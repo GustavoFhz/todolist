@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gustavo.todolist.models.TodoModel;
 import br.com.gustavo.todolist.service.TodoService;
+import jakarta.validation.Valid;
 
 @RestController
 public class TodoController {
@@ -29,27 +30,27 @@ public class TodoController {
     }
 
     //Cadastrar tarefa
-    @PostMapping("/api")
-    public ResponseEntity<?> cadastrar(@RequestBody TodoModel obj){
+    @PostMapping("/api/cadastrar")
+    public ResponseEntity<?> cadastrar(@RequestBody @Valid TodoModel obj){
         return todoService.cadastrar(obj);
     }
 
 
     //Selecionar tarefas
-    @GetMapping("/api")
+    @GetMapping("/api/selecionar")
     ResponseEntity<List<TodoModel>> selecionarTarefas(){
         return todoService.selecionar();
     }
 
     //Selecionar tarefa pelo id
-    @GetMapping("/api/{id}")
+    @GetMapping("/api/{id}/selecionar")
     public ResponseEntity<?> selecionarPeloId(@PathVariable Long id){
         return todoService.selecionarPeloId(id);
     }
 
 
     //Editar tarefa
-    @PutMapping("/api")
+    @PutMapping("/api/editar")
     public ResponseEntity<?> editar(@RequestBody TodoModel obj){
         return todoService.editar(obj);
     }

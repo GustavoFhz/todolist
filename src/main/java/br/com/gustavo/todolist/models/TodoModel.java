@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "todos")
@@ -13,9 +15,12 @@ public class TodoModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank (message = "O nome do aluno não pode ser nulo")
     private String nome;
+    @NotBlank
     private String descricao;
     private boolean realizado;
+    @NotNull
     private int prioridade;
     
     public TodoModel() {
